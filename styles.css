@@ -1,0 +1,347 @@
+/* ============================================================
+   해류 탐험대 — 컴포넌트 스타일
+   ============================================================ */
+
+/* ---------------- 그리드 ---------------- */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+@media(max-width:980px){
+  .grid-3{grid-template-columns:repeat(2,1fr);}
+  .grid-4{grid-template-columns:repeat(2,1fr);}
+  .grid-5{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:640px){
+  .grid-3,.grid-4,.grid-5{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:460px){
+  .grid-3,.grid-4,.grid-5{grid-template-columns:1fr;}
+}
+
+/* ---------------- 카드 공통 ---------------- */
+.card{
+  background:#fff;border-radius:var(--radius);padding:28px;
+  box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(10,31,51,.16);}
+.card-icon{font-size:32px;margin-bottom:14px;}
+
+/* ---------------- 문제의식 ---------------- */
+.problem-card h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+.problem-card p{font-size:14px;color:var(--text-muted);margin-bottom:18px;}
+.card-ref{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;
+  color:var(--teal-deep);background:#e6faf8;padding:4px 12px;border-radius:99px;
+}
+.callout{
+  margin-top:44px;background:var(--navy);color:#fff;border-radius:var(--radius);
+  padding:34px 38px;
+}
+.callout-label{
+  font-size:12px;letter-spacing:3px;color:var(--teal);font-weight:800;
+  margin-bottom:12px;text-transform:uppercase;
+}
+.callout p{font-size:17px;line-height:1.95;color:rgba(255,255,255,.92);}
+
+/* ---------------- 이론적 기반 ---------------- */
+.theory-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.theory-name{font-size:20px;font-weight:900;color:var(--navy);line-height:1.2;}
+.theory-year{font-size:12px;color:var(--text-muted);font-weight:700;}
+.theory-principle{
+  font-size:15px;font-weight:700;color:var(--ocean);margin-bottom:18px;
+  line-height:1.6;font-style:italic;
+}
+.theory-row{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start;}
+.theory-row p{font-size:13.5px;color:var(--text-muted);line-height:1.7;}
+.theory-tag{
+  flex-shrink:0;font-size:11px;font-weight:800;padding:3px 10px;
+  border-radius:99px;margin-top:1px;
+}
+.theory-tag.bad{background:#ffe3e0;color:#d6483b;}
+.theory-tag.good{background:#dcf6f4;color:var(--teal-deep);}
+
+/* ---------------- 전체 구조 ---------------- */
+.structure-grid{
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  flex-wrap:wrap;margin-bottom:40px;
+}
+.structure-box{
+  background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:38px 46px;text-align:center;min-width:200px;
+}
+.structure-box.alt{background:linear-gradient(135deg,#fff,var(--bg-alt));}
+.structure-box.final{background:var(--navy);color:#fff;}
+.structure-box .num{font-size:58px;font-weight:900;color:var(--ocean);line-height:1;}
+.structure-box.final .num{color:var(--teal);}
+.structure-box .label{margin-top:12px;font-weight:800;font-size:15px;}
+.structure-box .sub{margin-top:6px;font-size:12px;color:var(--text-muted);}
+.structure-box.final .sub{color:rgba(255,255,255,.6);}
+.structure-op{font-size:32px;font-weight:900;color:var(--text-muted);}
+.structure-note{
+  max-width:760px;margin:0 auto;text-align:center;
+  color:var(--text-muted);font-size:15px;line-height:1.85;
+}
+@media(max-width:780px){
+  .structure-grid{flex-direction:column;}
+  .structure-op{transform:rotate(90deg);}
+}
+
+/* ---------------- 메인 스토리 — 챕터 테마 ---------------- */
+.story-section{
+  background:linear-gradient(160deg,#2b1d10,#3d5a73);
+  color:#f5f7fa;transition:background 1s ease,color .6s ease;
+}
+.theme-harbor{
+  --t-bg1:#2b1d10;--t-bg2:#3d5a73;--t-text:#f5f7fa;--t-accent:#f0c896;
+  --t-glass:rgba(255,255,255,.07);--t-glass2:rgba(255,255,255,.10);
+  --t-border:rgba(255,255,255,.16);--t-badge-bg:rgba(0,0,0,.25);--t-badge-text:#ffd9a8;
+}
+.theme-deep{
+  --t-bg1:#03070e;--t-bg2:#0e2740;--t-text:#eafcff;--t-accent:#5eeaff;
+  --t-glass:rgba(255,255,255,.045);--t-glass2:rgba(94,234,255,.07);
+  --t-border:rgba(94,234,255,.18);--t-badge-bg:rgba(0,0,0,.4);--t-badge-text:#5eeaff;
+}
+.theme-ice{
+  --t-bg1:#eaf8fc;--t-bg2:#bfe8f4;--t-text:#16313f;--t-accent:#0288d1;
+  --t-glass:rgba(255,255,255,.55);--t-glass2:rgba(255,255,255,.85);
+  --t-border:rgba(2,136,209,.18);--t-badge-bg:#0288d1;--t-badge-text:#ffffff;
+}
+.theme-jungle{
+  --t-bg1:#0c2a1f;--t-bg2:#1f5c43;--t-text:#eafff4;--t-accent:#9be8c4;
+  --t-glass:rgba(255,255,255,.06);--t-glass2:rgba(149,232,196,.10);
+  --t-border:rgba(149,232,196,.2);--t-badge-bg:rgba(0,0,0,.25);--t-badge-text:#c8f5dd;
+}
+.theme-dawn{
+  --t-bg1:#0d3b66;--t-bg2:#e0a458;--t-text:#fff8ec;--t-accent:#ffe6a0;
+  --t-glass:rgba(255,255,255,.09);--t-glass2:rgba(255,209,102,.14);
+  --t-border:rgba(255,224,160,.25);--t-badge-bg:rgba(0,0,0,.2);--t-badge-text:#ffe6a0;
+}
+.story-section.theme-harbor,.story-section.theme-deep,.story-section.theme-jungle,.story-section.theme-dawn,.story-section.theme-ice{
+  background:linear-gradient(160deg,var(--t-bg1),var(--t-bg2));
+  color:var(--t-text);
+}
+
+/* 왜 해류인가 */
+.why-box{
+  margin:44px auto 0;max-width:980px;
+  background:var(--t-glass);border:1px solid var(--t-border);
+  border-radius:var(--radius);padding:34px;backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.why-box h3{font-size:18px;font-weight:800;margin-bottom:22px;color:var(--t-accent);}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 28px;}
+.why-item{padding:16px 0;border-top:1px solid var(--t-border);}
+.why-item:nth-child(-n+2){border-top:none;padding-top:0;}
+.why-title{font-weight:800;font-size:14px;margin-bottom:6px;}
+.why-desc{font-size:13.5px;opacity:.82;line-height:1.75;}
+@media(max-width:700px){
+  .why-grid{grid-template-columns:1fr;}
+  .why-item:nth-child(2){border-top:1px solid var(--t-border);padding-top:16px;}
+}
+
+/* 시놉시스 */
+.synopsis-box{max-width:820px;margin:36px auto 0;text-align:center;padding:0 20px;}
+.synopsis-mark{
+  font-size:60px;font-weight:900;color:var(--t-accent);opacity:.4;
+  line-height:.6;display:block;margin-bottom:10px;
+}
+.synopsis-box p{font-size:17px;line-height:2;opacity:.92;}
+
+/* 챕터 탭 */
+.tab-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:52px 0 40px;}
+.chapter-tab{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  background:rgba(255,255,255,.08);border:1px solid var(--t-border);
+  color:inherit;border-radius:14px;padding:14px 24px;cursor:pointer;
+  transition:all .25s ease;font-family:inherit;
+}
+.chapter-tab:hover{background:rgba(255,255,255,.18);transform:translateY(-3px);}
+.chapter-tab.active{
+  background:var(--t-accent);color:var(--navy-deep);border-color:transparent;
+  box-shadow:0 10px 26px rgba(0,0,0,.28);
+}
+.tab-icon{font-size:24px;}
+.tab-num{font-size:10px;font-weight:800;letter-spacing:2px;opacity:.7;}
+.tab-name{font-size:14px;font-weight:800;}
+
+/* 챕터 카드 */
+.chapter-card{
+  background:var(--t-glass);border:1px solid var(--t-border);
+  border-radius:24px;padding:42px;backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.chapter-head{display:flex;gap:26px;align-items:flex-start;margin-bottom:34px;flex-wrap:wrap;}
+.chapter-icon{font-size:58px;line-height:1;}
+.chapter-eyebrow{font-size:12px;font-weight:800;letter-spacing:4px;color:var(--t-accent);margin-bottom:8px;}
+.chapter-head h3{font-size:30px;font-weight:900;}
+.chapter-subtitle{font-weight:600;font-size:18px;opacity:.7;}
+.chapter-mood{margin-top:10px;font-size:14px;opacity:.65;line-height:1.7;}
+
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+@media(max-width:760px){.game-grid{grid-template-columns:1fr;}}
+
+.game-card{
+  background:var(--t-glass2);border:1px solid var(--t-border);
+  border-radius:16px;padding:22px;
+}
+.game-id{
+  display:inline-block;font-size:11px;font-weight:900;letter-spacing:2px;
+  color:var(--t-badge-text);background:var(--t-badge-bg);
+  padding:3px 10px;border-radius:99px;margin-bottom:12px;
+}
+.game-card h4{font-size:18px;font-weight:800;margin-bottom:6px;}
+.game-format{font-size:12px;opacity:.6;margin-bottom:10px;}
+.game-desc{font-size:13.5px;line-height:1.8;opacity:.9;margin-bottom:14px;}
+.game-ref{
+  font-size:11.5px;font-weight:700;opacity:.65;
+  border-top:1px solid var(--t-border);padding-top:12px;
+}
+
+.fade-pop{animation:fadePop .55s ease both;}
+@keyframes fadePop{
+  from{opacity:0;transform:translateY(16px) scale(.98);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+.env-note{
+  margin-top:30px;padding:22px 26px;border-radius:14px;
+  background:var(--t-glass);border:1px dashed var(--t-border);
+}
+.env-label{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--t-accent);margin-bottom:10px;}
+.env-note p{font-size:13.5px;line-height:1.85;opacity:.85;}
+
+/* ---------------- 개별 게임 아일랜드 ---------------- */
+.island-card{position:relative;padding:26px 24px;}
+.island-id{
+  position:absolute;top:22px;right:22px;font-size:11px;font-weight:900;
+  color:var(--text-muted);letter-spacing:1px;
+}
+.island-card h4{font-size:16px;font-weight:800;margin:8px 0 4px;}
+.island-tag{
+  display:inline-block;margin-top:14px;font-size:11px;font-weight:800;
+  color:var(--ocean);background:#e8f1fc;padding:4px 11px;border-radius:99px;
+}
+
+/* ---------------- 체크리스트 ---------------- */
+.subhead{font-size:20px;font-weight:900;color:var(--navy);margin:0 0 28px;text-align:center;}
+#calleja-bars{margin-top:72px;}
+
+.table-wrap{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow);background:#fff;}
+.data-table{width:100%;border-collapse:collapse;min-width:680px;}
+.data-table th,.data-table td{padding:16px 22px;text-align:left;font-size:14px;border-bottom:1px solid var(--bg-alt);}
+.data-table th{background:var(--navy);color:#fff;font-weight:800;font-size:13px;letter-spacing:1px;}
+.data-table tr:last-child td{border-bottom:none;}
+.cell-strong{font-weight:800;color:var(--navy);white-space:nowrap;}
+.cell-bad{color:#c0392b;background:#fff6f5;}
+.cell-good{color:var(--teal-deep);background:#f0fcfb;font-weight:600;}
+
+.bars-wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:24px;}
+.bar-row{display:grid;grid-template-columns:160px 1fr;gap:6px 24px;align-items:center;}
+.bar-label{display:flex;flex-direction:column;}
+.bar-name{font-weight:900;color:var(--navy);font-size:15px;}
+.bar-kr{font-size:12px;color:var(--text-muted);}
+.bar-track{
+  position:relative;background:var(--bg-alt);border-radius:99px;height:32px;
+  overflow:hidden;display:flex;align-items:center;
+}
+.bar-fill{
+  position:absolute;left:0;top:0;bottom:0;
+  background:linear-gradient(90deg,var(--teal),var(--ocean));border-radius:99px;
+  transition:width 1.1s cubic-bezier(.22,1,.36,1);
+}
+.bar-ratio{position:relative;margin-left:16px;font-size:12px;font-weight:800;color:var(--navy);z-index:1;}
+.bar-examples{grid-column:2 / 3;font-size:12px;color:var(--text-muted);}
+@media(max-width:640px){
+  .bar-row{grid-template-columns:1fr;}
+  .bar-examples{grid-column:1;}
+}
+
+/* ---------------- 동선 설계 ---------------- */
+#flow-intro{max-width:820px;margin:0 auto;}
+.flow-scroll{overflow-x:auto;padding:8px 0 40px;}
+.flow-row{display:flex;align-items:center;gap:6px;width:max-content;margin:0 auto;padding:0 8px;}
+.flow-node{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:14px;padding:14px 10px;min-width:92px;height:96px;
+  text-align:center;box-shadow:var(--shadow);flex-shrink:0;
+}
+.flow-icon{font-size:22px;margin-bottom:6px;}
+.flow-label{font-size:12px;font-weight:800;line-height:1.4;}
+.flow-arrow{font-size:18px;color:var(--text-muted);flex-shrink:0;}
+.flow-node.flow-node{background:var(--navy);color:#fff;}
+.flow-node.flow-island{background:#fff;border:2px dashed var(--ocean);color:var(--ocean);min-width:78px;}
+.flow-node.theme-harbor{background:#3d5a73;color:#fff;}
+.flow-node.theme-deep{background:#0a1f33;color:#5eeaff;}
+.flow-node.theme-ice{background:#cdeef7;color:#16313f;}
+.flow-node.theme-jungle{background:#1f5c43;color:#eafff4;}
+.flow-node.theme-dawn{background:linear-gradient(135deg,#0d3b66,#e0a458);color:#fff;}
+
+#flow-principles{margin-top:48px;}
+.principle-card{text-align:center;padding:30px 22px;}
+.principle-card h4{font-size:15px;font-weight:800;margin-bottom:10px;color:var(--navy);}
+.principle-card p{font-size:13px;color:var(--text-muted);line-height:1.7;}
+
+/* ---------------- 차별화 비교 ---------------- */
+.compare-head{display:grid;grid-template-columns:170px 1fr 36px 1fr;gap:0 16px;margin-bottom:10px;}
+.compare-col-label{
+  font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  padding:0 4px 12px;color:var(--text-muted);
+}
+.compare-col-label.before{color:#c0392b;}
+.compare-col-label.after{color:var(--teal-deep);}
+.compare-row{
+  display:grid;grid-template-columns:170px 1fr 36px 1fr;gap:0 16px;align-items:center;
+  background:#fff;border-radius:14px;padding:18px 22px;margin-bottom:10px;box-shadow:var(--shadow);
+}
+.compare-item{font-weight:900;color:var(--navy);font-size:14px;}
+.compare-before{font-size:13.5px;color:var(--text-muted);}
+.compare-after{font-size:13.5px;color:var(--text-dark);font-weight:600;}
+.compare-arrow{text-align:center;color:var(--teal-deep);font-weight:900;}
+@media(max-width:760px){
+  .compare-head{display:none;}
+  .compare-row{grid-template-columns:1fr;gap:8px;padding:16px 20px;}
+  .compare-arrow{display:none;}
+  .compare-item{font-size:12px;letter-spacing:1px;color:var(--ocean);text-transform:uppercase;}
+  .compare-before::before{content:"기존 시설 — ";font-weight:800;color:#c0392b;}
+  .compare-after::before{content:"제안 — ";font-weight:800;color:var(--teal-deep);}
+}
+
+/* ---------------- 실행 우선순위 ---------------- */
+#priority-intro{max-width:820px;margin:0 auto;}
+.priority-item{display:flex;gap:24px;max-width:820px;margin:0 auto 32px;position:relative;}
+.priority-item:not(:last-child)::before{
+  content:"";position:absolute;left:23px;top:54px;bottom:-32px;width:2px;background:var(--bg-alt);
+}
+.priority-num{
+  flex-shrink:0;width:48px;height:48px;border-radius:50%;background:var(--navy);
+  color:var(--teal);display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:18px;z-index:1;
+}
+.priority-body h4{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+.priority-ref{
+  display:inline-block;margin-left:8px;font-size:11px;font-weight:700;
+  color:var(--teal-deep);background:#e6faf8;padding:2px 10px;border-radius:99px;
+  vertical-align:middle;
+}
+.priority-body p{font-size:14px;color:var(--text-muted);line-height:1.8;}
+
+/* ---------------- 참고문헌 ---------------- */
+#priority-timeline{margin-top:56px;}
+.ref-group{margin-bottom:52px;}
+.ref-count{font-size:13px;color:var(--text-muted);font-weight:700;}
+.accordion{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+.accordion-item{background:#fff;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;}
+.accordion-trigger{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:18px 22px;background:none;border:none;cursor:pointer;
+  font-family:inherit;text-align:left;
+}
+.accordion-title{font-size:14.5px;font-weight:800;color:var(--navy);}
+.accordion-year{font-size:12px;font-weight:600;color:var(--text-muted);margin-left:6px;}
+.accordion-plus{font-size:20px;color:var(--teal-deep);font-weight:300;transition:transform .3s;flex-shrink:0;}
+.accordion-item.open .accordion-plus{transform:rotate(45deg);}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 22px;}
+.accordion-item.open .accordion-body{max-height:320px;padding:0 22px 22px;}
+.accordion-line{font-size:14px;font-style:italic;color:var(--ocean);margin-bottom:10px;line-height:1.75;}
+.accordion-example{font-size:13px;color:var(--text-muted);line-height:1.85;}
+.ref-footnote{text-align:center;font-size:13px;color:var(--text-muted);margin-top:12px;}
