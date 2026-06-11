@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>컨셉 비교분석 — 1000평 실내 테마파크</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+:root{
+  --navy:#0a1f33;
+  --navy-deep:#061320;
+  --ocean:#1565c0;
+  --teal:#4ecdc4;
+  --teal-deep:#1f9c93;
+  --gold:#ffd166;
+  --coral:#ff6b6b;
+  --text-light:#f5f7fa;
+  --text-dark:#1b2733;
+  --text-muted:#62788c;
+  --bg-light:#f4f7f9;
+  --bg-alt:#eaf1f4;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(10,31,51,.10);
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',sans-serif;
+  color:var(--text-dark);
+  background:var(--bg-light);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+/* progress bar */
+#scroll-progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  z-index:1000;transition:width .1s linear;
+}
+
+/* nav */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:rgba(10,31,51,.55);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:background .3s ease, padding .3s ease;
+  color:#fff;
+}
+#nav.scrolled{background:rgba(10,31,51,.92);padding:10px 28px;}
+.brand{font-weight:800;font-size:17px;letter-spacing:.5px;display:flex;align-items:center;gap:8px;white-space:nowrap;}
+.brand span.tag{font-size:11px;font-weight:600;color:var(--teal);background:rgba(78,205,196,.12);padding:2px 8px;border-radius:99px;letter-spacing:1px;}
+.back-link{
+  font-size:13px;font-weight:700;color:rgba(255,255,255,.78);text-decoration:none;
+  padding:8px 16px;border-radius:99px;border:1px solid rgba(255,255,255,.25);
+  transition:all .2s;white-space:nowrap;
+}
+.back-link:hover{color:#fff;background:rgba(255,255,255,.12);}
+
+/* page header */
+#page-header{
+  position:relative;padding:160px 24px 90px;text-align:center;
+  background:radial-gradient(ellipse at 20% 20%, #123a5c 0%, var(--navy) 45%, var(--navy-deep) 100%);
+  color:#fff;overflow:hidden;
+}
+#page-header .eyebrow{
+  font-size:13px;letter-spacing:4px;font-weight:700;color:var(--teal);
+  text-transform:uppercase;margin-bottom:18px;
+}
+#page-header h1{font-size:clamp(36px,7vw,66px);font-weight:900;letter-spacing:-1px;}
+#page-header h2{font-size:clamp(16px,2.6vw,24px);font-weight:600;color:rgba(255,255,255,.8);margin-top:14px;}
+#page-header p{max-width:680px;margin:24px auto 0;font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;}
+
+/* section generic */
+.section{padding:96px 0;}
+.section.alt{background:var(--bg-alt);}
+.section-head{max-width:760px;margin:0 auto 48px;text-align:center;}
+.section-tag{
+  display:inline-block;font-size:12px;font-weight:800;letter-spacing:3px;
+  color:var(--teal-deep);text-transform:uppercase;margin-bottom:14px;
+  padding:5px 14px;border:1px solid var(--teal);border-radius:99px;
+}
+.section-head h2{font-size:clamp(26px,4vw,40px);font-weight:900;letter-spacing:-1px;color:var(--navy);}
+.section-head p{margin-top:16px;font-size:15px;color:var(--text-muted);line-height:1.85;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* footer */
+footer{
+  background:var(--navy-deep);color:rgba(255,255,255,.5);
+  text-align:center;padding:48px 24px;font-size:13px;letter-spacing:.5px;
+}
+footer strong{color:var(--teal);}
+footer a{color:var(--teal);text-decoration:none;font-weight:700;}
+footer a:hover{text-decoration:underline;}
+footer .back-row{margin-top:10px;}
+
+/* back to top */
+#toTop{
+  position:fixed;bottom:28px;right:28px;z-index:800;
+  width:46px;height:46px;border-radius:50%;border:none;
+  background:var(--navy);color:var(--teal);font-size:18px;cursor:pointer;
+  box-shadow:var(--shadow);opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;
+}
+#toTop.show{opacity:1;pointer-events:auto;}
+#toTop:hover{transform:translateY(-4px);}
+
+@media(max-width:720px){
+  #nav{padding:12px 16px;}
+  .brand{font-size:14px;}
+  .brand .tag{display:none;}
+  .back-link{font-size:12px;padding:7px 12px;}
+  .section{padding:64px 0;}
+  #page-header{padding:120px 20px 64px;}
+}
+
+/* ============================================================
+   컨셉 비교분석 — 전용 컴포넌트
+   ============================================================ */
+.concept-section{
+  --t-bg1:#0a1f33;--t-bg2:#15375a;--t-text:#f5f7fa;--t-accent:#4ecdc4;
+  --t-glass:rgba(255,255,255,.05);--t-glass2:rgba(255,255,255,.08);
+  --t-border:rgba(255,255,255,.14);--t-badge-bg:rgba(0,0,0,.28);--t-badge-text:#bff5f0;
+  background:linear-gradient(160deg,var(--t-bg1),var(--t-bg2));
+  color:var(--t-text);
+}
+.concept-section .section-head h2{color:#fff;}
+.concept-section .section-head p{color:rgba(255,255,255,.65);}
+.concept-section .section-tag{border-color:var(--teal);color:var(--teal);}
+.concept-section .callout{background:rgba(0,0,0,.32);border:1px solid var(--t-border);}
+
+/* overview table */
+.overview-table-wrap{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow);background:#fff;}
+.overview-table-wrap th:first-child,.overview-table-wrap td:first-child{
+  text-align:left;white-space:nowrap;
+}
+.theme-name-cell{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);}
+
+/* theme card */
+.theme-card{
+  background:var(--t-glass);border:1px solid var(--t-border);
+  border-radius:24px;padding:42px;backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.theme-head{display:flex;gap:24px;align-items:flex-start;margin-bottom:34px;flex-wrap:wrap;}
+.theme-icon{font-size:54px;line-height:1;}
+.theme-eyebrow{font-size:12px;font-weight:800;letter-spacing:4px;color:var(--t-accent);margin-bottom:8px;}
+.theme-head h3{font-size:27px;font-weight:900;}
+.theme-subtitle{font-weight:600;font-size:16px;opacity:.7;}
+.theme-position{margin-top:10px;font-size:14px;opacity:.75;line-height:1.8;max-width:640px;}
+
+.theme-stage{display:grid;grid-template-columns:320px 1fr;gap:32px;align-items:center;margin-bottom:32px;}
+.theme-image{border-radius:16px;box-shadow:0 14px 34px rgba(0,0,0,.35);border:1px solid var(--t-border);}
+@media(max-width:860px){
+  .theme-stage{grid-template-columns:1fr;}
+  .theme-image{max-width:380px;margin:0 auto;}
+}
+
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.stat-pill{background:var(--t-glass2);border:1px solid var(--t-border);border-radius:14px;padding:16px 12px;text-align:center;}
+.stat-pill .stat-num{font-size:26px;font-weight:900;color:var(--t-accent);}
+.stat-pill .stat-label{margin-top:6px;font-size:12px;opacity:.75;}
+@media(max-width:480px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
+
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
+.insight-card{background:var(--t-glass2);border:1px solid var(--t-border);border-radius:14px;padding:20px 22px;}
+.insight-tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;margin-bottom:10px;}
+.insight-tag.good{background:#dcf6f4;color:var(--teal-deep);}
+.insight-tag.bad{background:#ffe3e0;color:#d6483b;}
+.insight-card p{font-size:13.5px;line-height:1.8;opacity:.92;}
+@media(max-width:700px){.insight-grid{grid-template-columns:1fr;}}
+
+.ref-tag-row{font-size:12px;opacity:.55;margin-bottom:28px;letter-spacing:.5px;}
+
+.compose-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  padding:18px;border-radius:14px;border:1px solid var(--t-accent);
+  background:transparent;color:var(--t-accent);font-family:inherit;
+  font-size:15px;font-weight:800;cursor:pointer;transition:all .25s;
+}
+.compose-btn:hover{background:var(--t-accent);color:var(--navy-deep);}
+.compose-icon{font-size:18px;}
+.compose-arrow{transition:transform .3s;margin-left:4px;display:inline-block;}
+.compose-btn.open{background:var(--t-accent);color:var(--navy-deep);}
+.compose-btn.open .compose-arrow{transform:rotate(180deg);}
+
+.analysis-panel{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+.analysis-inner{padding-top:32px;}
+.analysis-label{font-size:13px;font-weight:800;letter-spacing:2px;color:var(--t-accent);text-transform:uppercase;margin-bottom:16px;}
+.synopsis{
+  font-size:15px;line-height:1.95;opacity:.92;margin-bottom:28px;padding:20px 24px;
+  background:var(--t-glass2);border-left:3px solid var(--t-accent);border-radius:0 12px 12px 0;
+}
+
+.ref-card{margin-top:24px;background:var(--t-glass2);border:1px solid var(--t-border);border-radius:14px;padding:24px 26px;}
+.ref-card-label{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--t-accent);text-transform:uppercase;margin-bottom:10px;}
+.ref-card h5{font-size:16px;font-weight:800;margin-bottom:8px;}
+.ref-card p{font-size:13px;opacity:.8;line-height:1.8;margin-bottom:12px;}
+.ref-card a{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--t-accent);text-decoration:none;border-bottom:1px solid var(--t-accent);padding-bottom:2px;}
+.ref-card a:hover{opacity:.75;}
+
+/* gallery */
+.gallery-grid{
+  margin-top:20px;display:grid;
+  grid-template-columns:repeat(5,1fr);gap:10px;
+}
+.gallery-item{
+  position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:10px;
+  border:1px solid var(--t-border);cursor:pointer;background:#000;
+}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .4s ease, opacity .4s ease;
+}
+.gallery-item:hover img{transform:scale(1.08);opacity:.85;}
+.gallery-cap{
+  position:absolute;left:0;right:0;bottom:0;padding:6px 8px 5px;
+  font-size:10.5px;line-height:1.4;color:#fff;
+  background:linear-gradient(0deg,rgba(0,0,0,.78),rgba(0,0,0,0));
+  opacity:0;transform:translateY(6px);
+  transition:opacity .25s ease, transform .25s ease;
+}
+.gallery-item:hover .gallery-cap{opacity:1;transform:translateY(0);}
+.gallery-note{margin-top:14px;font-size:11.5px;opacity:.5;line-height:1.7;}
+@media(max-width:860px){.gallery-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:480px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* lightbox */
+#lightbox{
+  position:fixed;inset:0;z-index:2000;display:none;
+  align-items:center;justify-content:center;
+  background:rgba(6,19,32,.92);backdrop-filter:blur(6px);
+  padding:32px;
+}
+#lightbox.open{display:flex;}
+#lightbox figure{max-width:min(900px,92vw);max-height:88vh;text-align:center;}
+#lightbox img{max-width:100%;max-height:72vh;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.5);}
+#lightbox figcaption{margin-top:14px;color:#fff;font-size:13.5px;opacity:.85;line-height:1.8;}
+#lightbox-close{
+  position:absolute;top:24px;right:28px;width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;
+  font-size:18px;cursor:pointer;transition:background .2s;
+}
+#lightbox-close:hover{background:rgba(255,255,255,.16);}
+</style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav id="nav">
+  <div class="brand">🌊 해류 탐험대 <span class="tag">PROPOSAL</span></div>
+  <a class="back-link" href="index.html">← 제안서로 돌아가기</a>
+</nav>
+
+<header id="page-header">
+  <div class="eyebrow" id="hero-eyebrow"></div>
+  <h1 id="hero-title"></h1>
+  <h2 id="hero-subtitle"></h2>
+  <p id="hero-desc"></p>
+</header>
+
+<main>
+
+<section id="overview" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Overview</div>
+      <h2>4개 테마, 같은 잣대로 비교하다</h2>
+      <p id="overview-intro"></p>
+    </div>
+    <div id="overview-table" class="reveal"></div>
+  </div>
+</section>
+
+<section id="themes" class="section concept-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Theme Tabs</div>
+      <h2>테마별 분석 + "이 테마로 구성"</h2>
+      <p>탭을 눌러 테마를 선택하고, 버튼을 눌러 실제 게임 구성안을 확인하세요.</p>
+    </div>
+    <div id="theme-tabs" class="reveal"></div>
+    <div id="theme-panel" class="reveal"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div><strong>컨셉 비교분석</strong> — 1000평 실내 테마파크 대안 테마 검토</div>
+  <div class="back-row"><a href="index.html">← 해류 탐험대 제안서로 돌아가기</a></div>
+</footer>
+
+<button id="toTop" aria-label="맨 위로">↑</button>
+
+<div id="lightbox">
+  <button id="lightbox-close" aria-label="닫기">✕</button>
+  <figure>
+    <img id="lightbox-img" src="" alt="">
+    <figcaption id="lightbox-caption"></figcaption>
+  </figure>
+</div>
+
+<script src="concept-data.js"></script>
+<script src="concept-app.js"></script>
+</body>
+</html>
